@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha test/index.ls --compilers ls:livescript",
     "coverage": "gulp coverage",
-    "coveralls": "gulp coverage  && cat coverage/lcov.info | coveralls"
+    "coveralls": "gulp coverage  && cat coverage/lcov.info | coveralls",
+    "postinstall": "lsc --compile index.ls"
   },
   "author": "Furqan Zafar",
   "license": "ISC",
