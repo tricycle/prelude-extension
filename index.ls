@@ -1,4 +1,4 @@
-{all, any, concat-map, each, filter, find, fold, is-type, 
+{all, any, concat-map, each, filter, find, fold, is-type,
 keys, map, Obj, obj-to-pairs, partition, reverse, sort-by} = require \prelude-ls
 
 # :: Int -> [a] -> [[a]]
@@ -18,9 +18,9 @@ clamp = (n, min, max) --> Math.max min, (Math.min max, n)
 
 # :: String -> String -> Int -> [Int]
 find-all = (text, search, offset) -->
-    index = text .substr offset .index-of search
+    index = text .substr offset .toLowerCase!index-of search
     if index == -1
-        [] 
+        []
     else
         [offset + index] ++ (find-all text, search, (offset + index + search.length))
 
@@ -36,7 +36,7 @@ get = (object, [p, ...ps]) -->
 
 # :: object -> Boolean
 is-empty-object = (object) ->
-    0 == (object 
+    0 == (object
         |> Obj.filter -> !!it
         |> keys
         |> (.length))
@@ -61,7 +61,7 @@ is-equal-to-object = (o1, o2) -->
     else
 
         # ensure that the objects have the same number of keys
-        return false if keys o1 .length != keys o2 .length 
+        return false if keys o1 .length != keys o2 .length
 
         # compare each property in the object
         (keys o1) |> all (key) -> o1[key] `is-equal-to-object` o2[key]
@@ -103,7 +103,7 @@ rextend = (a, b) -->
     # copy b's keys and values to a
     bkeys |> each (key) ->
         a[key] = (if (Obj.keys a[key]).length > 0 then {} <<< a[key] else a[key]) `rextend` b[key]
-        
+
     a
 
 # :: a -> [String] -> b -> a (MUTATION)
@@ -123,7 +123,7 @@ transpose = (arr) ->
         arr |> map (row) -> row[column]
 
 # :: ([String] -> a -> b) -> Int -> c -> [b]
-unwrap = (f, depth, object) --> 
+unwrap = (f, depth, object) -->
     r = (f, ks, i, j, object) -->
         object
             |> obj-to-pairs
