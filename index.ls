@@ -18,7 +18,7 @@ clamp = (n, min, max) --> Math.max min, (Math.min max, n)
 
 # :: String -> String -> Int -> [Int]
 find-all = (text, search, offset) -->
-    index = text .substr offset .toLowerCase!index-of search
+    index = text .substr offset .toLowerCase!index-of (search .toLowerCase!)
     if index == -1
         []
     else

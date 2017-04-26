@@ -20,7 +20,7 @@
   });
   findAll = curry$(function(text, search, offset){
     var index;
-    index = text.substr(offset).toLowerCase().indexOf(search);
+    index = text.substr(offset).toLowerCase().indexOf(search.toLowerCase());
     if (index === -1) {
       return [];
     } else {
